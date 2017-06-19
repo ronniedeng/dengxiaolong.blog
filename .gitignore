@@ -6,4 +6,5 @@ node_modules/
 public/
 .deploy*/
 *.lock
-themes
+!/themes/hello/
+/themes/
