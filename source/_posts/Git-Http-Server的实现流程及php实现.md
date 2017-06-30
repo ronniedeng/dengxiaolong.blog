@@ -1,16 +1,16 @@
 ---
-title: Git Http Server的实现流程及php实现
+title: Git HTTP Server的实现流程及php实现
 date: 2017-06-21 00:32:38
 tags: git
 ---
 
-团队内部的版本工具，从svn换到git之后，先用了一小段时间基于ssh的git服务以后，果断换到了高大上的gitlab。后期，随着git项目的不断扩大，到gitlab的不堪重负，以及升级的各种阵痛。再到后来团队对于代码规划化和文档规范的需求，我们基于php实现了一套完全自主的git http server。
+团队内部的版本工具，从svn换到git之后，先用了一小段时间基于ssh的git服务以后，果断换到了高大上的gitlab。后期，随着git项目的不断扩大，到gitlab的不堪重负，以及升级的各种阵痛。再到后来团队对于代码规划化和文档规范的需求，我们基于php实现了一套完全自主的Git HTTP Server。
 <!--more-->
 
 
 ## Git HTTP Server 第一版
 
-早期的git http server，由于对nginx的坚持，以及`git-http-backend`对fastcgi的不支持，我们在中间加了`facgiwrap`作为粘合剂，结合nginx的`basic 验证`，使得整套系统能正常运转起来。这个时候，git项目只有我一个人参与。
+早期的Git HTTP Server，由于对nginx的坚持，以及`git-http-backend`对fastcgi的不支持，我们在中间加了`facgiwrap`作为粘合剂，结合nginx的`basic 验证`，使得整套系统能正常运转起来。这个时候，git项目只有我一个人参与。
 
 
 大概架构为：
@@ -42,7 +42,7 @@ tags: git
 
 来看一下我理解的Git HTTP Server的工作流程：
 
-[!Git HTTP Server的流程图](./git-http-server-process.png)
+{% asset_img git-http-server-process.png Git HTTP Server的工作流程%}
 
 <https://www.processon.com/view/link/594946bee4b0e1bb14fdeb21>
 
