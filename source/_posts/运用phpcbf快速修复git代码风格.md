@@ -102,7 +102,7 @@ foreach($dirs as $key => $dir) {
     }
 
     // phpcbf处理的时候，如果没有任何一个可用文件，会报错，因此提前检查
-    $cmd = sprintf("find %s -type f -name *.php|wc -l", $dir);
+    $cmd = sprintf("find %s -type f -name '*.php'|wc -l", $dir);
     ob_start();
     $count = system($cmd);
     ob_get_clean();
@@ -180,7 +180,7 @@ ini_set('display_errors', 1);
 
 // 找出所有的php文件
 $dir = getcwd();
-exec("find $dir -type f -name *.php", $phps);
+exec("find $dir -type f -name '*.php'", $phps);
 
 foreach($phps  as $file) {
     phpfixFile($file);
