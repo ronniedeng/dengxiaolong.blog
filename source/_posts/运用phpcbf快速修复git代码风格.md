@@ -36,7 +36,7 @@ phpcbf ./ --standard=PSR2 --extensions=php
 最简单最直接也是最容易想到的办法，就是用`git filter-branch`命令，然后再用`--tree-filter`选项对整个历史代码格式化一下。代码如下：
 
 ```shell
-git filter-branch --tree-filter="phpcbf ./ --standard=PSR2 --extensions=php" --prune-empty -f
+git filter-branch --tree-filter "phpcbf ./ --standard=PSR2 --extensions=php" --prune-empty -f
 ```
 
 这个命令里边，`filter-branch`这个命令对于git而言，算是一个核武器了，因为它可以通过脚本的方式对大量提交进行修改。比如，全局地修改邮箱地址，或者把某一个文件从每一个提交中都删除掉。
@@ -58,7 +58,7 @@ exit 0
 ```
 同时，调用命令变成了：
 ```shell
-git filter-branch --tree-filter="sh phpcbf.sh" --prune-empty -f
+git filter-branch --tree-filter "sh phpcbf.sh" --prune-empty -f
 ```
 
 这样一来，能保障及时phpcbf执行过程中即使有报错，也不会影响程序继续执行。不过，没有等执行完毕，我就中止了这个命令。因为，要跑完1200多个commit，还真得花上好几个小时，太耗时间了。怎么办呢？在不改动代码前提的基础下，我的想法是把代码放到内存里去执行。
@@ -80,7 +80,7 @@ tmpfs                          1.9G     0  1.9G   0% /dev/shm
 
 不过，鉴于处理这个问题的时候，已经很晚了，而且，这样处理起来效率还是很低，所以，我就直接让其在机器里边跑着，睡觉去了。
 ```shell
-nohup git filter-branch --tree-filter="sh phpcbf.sh" --prune-empty -f &
+nohup git filter-branch --tree-filter "sh phpcbf.sh" --prune-empty -f &
 ```
 `nohup`命令可以保证，即使ssh断掉，这个进程也会继续执行，`&`则是表示进程进入后台运行。
 
